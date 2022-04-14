@@ -18,32 +18,40 @@ class _HomePageState extends State<HomePage> {
   var db = DatabaseConnect();
 
   //function to add todo
-  void  addItem(Todo todo)async{
+  void addItem(Todo todo) async {
     await db.insertTodo(todo);
-    setState((){});
+    setState(() {});
   }
+
   // function delete todo
-  void deleteItem(Todo todo)async{
+  void deleteItem(Todo todo) async {
     await db.deleteTodo(todo);
-    setState((){});
+    setState(() {});
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-    appBar: AppBar(
-    backgroundColor:Colors.yellow[600],
+      appBar: AppBar(
+        backgroundColor: Colors.yellow[600],
         title: const Center(
-    child:Text('Qaydnoma',
-        style: TextStyle(
-          color: Colors.black,
-        ),),
+          child: Text(
+            'Qaydnoma',
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+        ),
       ),
-    ),
       body: Column(children: [
         //we wil add our widgets here
-        Todolist(insertFunction: addItem,
-          deleteFunction:deleteItem,),
-        UserInput( insertFunction: addItem,),
+        Todolist(
+          insertFunction: addItem,
+          deleteFunction: deleteItem,
+        ),
+        UserInput(
+          insertFunction: addItem,
+        ),
       ]),
     );
   }
